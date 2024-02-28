@@ -1,0 +1,10 @@
+navigate into productivity_app root directory
+
+type 'npm run build' in console
+    - this bundles the react code
+
+type 'rpm run start' in console
+    - this starts the Electron app
+this should start the electronJS window
+
+!! to close the window in terminal = ctrl + c
