@@ -20,16 +20,23 @@ function getAllRowsFromTable(tableName, callback) {
         }
     });
 }
-/*
-db.close((err) => {
-  if (err) {
-      console.error('Error closing database: ', err.message);
-  } else {
-      console.log('Database connection closed.');
-  }
-});
-*/
+
+// Function to insert a name into the table 
+function insertRow(name) {
+    const sql = 'INSERT INTO test (name) VALUES (?)';
+
+    db.run(sql, [name], function(err) {
+        if (err) {
+            console.error('Error inserting data into the table:', err.message);
+        } else {
+            console.log(`A row has been inserted with rowid ${this.lastID}`);
+        }
+    });
+}
+
+
 // Export the function to make it accessible from other files
 module.exports = {
-    getAllRowsFromTable
+    getAllRowsFromTable,
+    insertRow
 };

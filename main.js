@@ -1,5 +1,5 @@
 const { app, BrowserWindow } = require('electron')
-const { getAllRowsFromTable } = require('./database.js');
+const { insertRow, getAllRowsFromTable } = require('./database.js');
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -14,6 +14,10 @@ function createWindow () {
 }
 
 app.whenReady().then(createWindow)
+
+
+// Call the function to add data to the table
+insertRow('Madelyn');
 
 // Call the function to get all rows from the table when needed
 getAllRowsFromTable('test', (rows) => {
