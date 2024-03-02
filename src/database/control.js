@@ -1,19 +1,33 @@
 /**
  * File Name: control.js
  * Updated On: 3/2/24 by Jessica Halvorsen 
- * Function: Opens the database and has functions to addNewUsers, 
+ * Description: Open the database, add new tasks and users, delete users, close the database
  */
 
-const sqlite = require('sqlite3'); 
+//const sqlite = require('sqlite3'); 
+const db = require('./init'); 
 
 //open the database 
+/*
 const db = new sqlite.Database('./myApp.db', (err) => {
     if (err) {
         console.error('Error opening database: ', err.message);
     } else {
         console.log('Connected to the database.');
-    }
-  });
+    }    
+});
+*/
+
+//closes the database
+function closeDB() {
+    db.close((err) => {
+        if (err) {
+            console.error('Error closing database: ', err.message);
+        } else {
+            console.log('Database connection closed.');
+        }
+    });
+}
 
 //function to add new user
 function addNewUser(firstName, lastName, email, password) {
@@ -28,7 +42,7 @@ function addNewUser(firstName, lastName, email, password) {
     });
 }
 
-//function to add new user
+//function to add new task
 function addNewTask(userID, description, date) {
     const sql = 'INSERT INTO Tasks (UserID, Description, Date) VALUES (?, ?, ?)';
 
@@ -41,17 +55,25 @@ function addNewTask(userID, description, date) {
     });
 }
 
-//function to return a users email using UserID
-function getUserEmail(userID, callback) {
-    const query = 'SELECT Email FROM Users WHERE UserID = ?';
+//function to delete a user 
+function deleteUser(userID) {
+    const sql = 'DELETE FROM Users WHERE UserID = ?';
 
-    db.get(query, [userID], (err, row) => {
+    db.run(sql, [userID], function(err) {
         if (err) {
-            console.error('Error fetching email from the database: ', err.message);
-            callback(err, null);
+            console.error('Error deleting user from the table:', err.message);
         } else {
-            // Pass the email to the callback function
-            callback(null, row ? row.Email : null);
+            console.log(`User with UserID ${userID} has been deleted.`);
+        }
+    });
+
+    const sql2 = 'DELETE FROM Tasks WHERE UserID = ?';
+
+    db.run(sql2, [userID], function(err) {
+        if (err) {
+            console.error('Error deleting user from the table:', err.message);
+        } else {
+            console.log(`Tasks for user with UserID ${userID} have been deleted.`);
         }
     });
 }
@@ -60,5 +82,6 @@ function getUserEmail(userID, callback) {
 module.exports = {
     addNewUser,
     addNewTask, 
-    getUserEmail
+    closeDB, 
+    deleteUser
 };

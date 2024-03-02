@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron')
-const { addNewUser, addNewTask, getUserEmail } = require('./src/database/control.js'); 
+const { addNewUser, addNewTask, closeDB, deleteUser } = require('./src/database/control.js'); 
+const {User}  = require('./src/database/User'); 
 //require('./src/database/init.js');
 
 function createWindow () {
@@ -16,13 +17,32 @@ function createWindow () {
 
 app.whenReady().then(createWindow)
 
-//addNewUser('Jessica', 'Halvorsen', 'j.halvorsen@ufl.edu', 'pa$$word'); 
-//addNewTask(1, 'work on our app:)', '2024-03-02'); 
+//create instance of database
+const user4 = new User(4); 
 
-getUserEmail(1, (err, email) => {
+user1.getEmail((err, email) => {
   if (err) {
       console.error('Error:', err.message);
   } else {
       console.log('User 1 email:', email);
   }
 });
+
+/*
+user4.updateFirstName('Winston', (err) => {
+    if (err) {
+        console.error('Error updating first name:', err.message);
+    } else {
+        console.log('First name updated successfully.');
+    }
+});
+*/
+
+//deleteUser(2); 
+
+//var id;
+addNewUser('Mom', 'Halvorsen', 'khalvorsen@gmail', 'pa$$word'); 
+
+//addNewTask(1, 'work on our app:)', '2024-03-02'); 
+
+closeDB(); 
