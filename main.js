@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron')
-const { insertRow, getAllRowsFromTable } = require('./database.js');
+const { addNewUser, addNewTask, getUserEmail } = require('./src/database/control.js'); 
+//require('./src/database/init.js');
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -15,12 +16,13 @@ function createWindow () {
 
 app.whenReady().then(createWindow)
 
+//addNewUser('Jessica', 'Halvorsen', 'j.halvorsen@ufl.edu', 'pa$$word'); 
+//addNewTask(1, 'work on our app:)', '2024-03-02'); 
 
-// Call the function to add data to the table
-insertRow('Madelyn');
-
-// Call the function to get all rows from the table when needed
-getAllRowsFromTable('test', (rows) => {
-  console.log('Rows retrieved from database:', rows);
-  // Do something with the retrieved rows
+getUserEmail(1, (err, email) => {
+  if (err) {
+      console.error('Error:', err.message);
+  } else {
+      console.log('User 1 email:', email);
+  }
 });
