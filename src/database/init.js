@@ -48,8 +48,8 @@ db.run(`CREATE TABLE Tasks (
         console.log('Tasks table created successfully.');
     }
 });
-*/
 
+*/
 
 //export the db for use in other files 
 module.exports = db;

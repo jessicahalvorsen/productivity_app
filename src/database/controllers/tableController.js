@@ -4,19 +4,7 @@
  * Description: Open the database, add new tasks and users, delete users, close the database
  */
 
-//const sqlite = require('sqlite3'); 
-const db = require('./init'); 
-
-//open the database 
-/*
-const db = new sqlite.Database('./myApp.db', (err) => {
-    if (err) {
-        console.error('Error opening database: ', err.message);
-    } else {
-        console.log('Connected to the database.');
-    }    
-});
-*/
+const db = require('../init'); 
 
 //closes the database
 function closeDB() {
