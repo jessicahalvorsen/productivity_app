@@ -1,9 +1,11 @@
 /**
  * File Name: User.js
  * Updated On: 3/2/24 by Jessica Halvorsen 
- * Description: Provies 'getters' and 'setters' for a User specified by UserID 
+ * Description: creates user objects that have 'getters' and 'setters' for a User 
+ * specified by UserID 
  */
 const db = require('./init'); 
+
 
 class User {
     constructor(userID) {

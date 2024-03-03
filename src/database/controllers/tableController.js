@@ -1,5 +1,5 @@
 /**
- * File Name: control.js
+ * File Name: tableController.js
  * Updated On: 3/2/24 by Jessica Halvorsen 
  * Description: Open the database, add new tasks and users, delete users, close the database
  */
