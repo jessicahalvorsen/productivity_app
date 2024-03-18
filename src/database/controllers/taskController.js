@@ -15,7 +15,7 @@ function getDescription(taskID, callback) {
             callback(err, null);
         } else {
             // Pass the description to the callback function
-            callback(null, row ? row.Description : null);
+            callback(row ? row.Description : null);
         }
     });
 }
