@@ -16,7 +16,7 @@ function getFirstName(userID, callback) {
             callback(err, null);
         } else {
             // Pass the first name to the callback function
-            callback(null, row ? row.FirstName : null);
+            callback(row ? row.FirstName : null);
         }
     });
 }
@@ -46,7 +46,7 @@ function getLastName(userID, callback) {
             callback(err, null);
         } else {
             // Pass the last name to the callback function
-            callback(null, row ? row.LastName : null);
+            callback(row ? row.LastName : null);
         }
     });
 }
@@ -76,7 +76,7 @@ function getEmail(userID, callback) {
             callback(err, null);
         } else {
             // Pass the email to the callback function
-            callback(null, row ? row.Email : null);
+            callback(row ? row.Email : null);
         }
     });
 }
@@ -106,7 +106,7 @@ function getPassword(userID, callback) {
             callback(err, null);
         } else {
             // Pass the password to the callback function
-            callback(null, row ? row.Password : null);
+            callback(row ? row.Password : null);
         }
     });
 }

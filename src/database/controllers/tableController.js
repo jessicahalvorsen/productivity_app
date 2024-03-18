@@ -20,7 +20,7 @@ function closeDB() {
 //function to add new user
 function addNewUser(firstName, lastName, email, password) {
     const sql = 'INSERT INTO Users (FirstName, LastName, Email, Password) VALUES (?, ?, ?, ?)';
-
+    console.log(`A User has been inserted with UserID ${this.lastID}`);
     db.run(sql, [firstName, lastName, email, password], function(err) {
         if (err) {
             console.error('Error inserting User into the table:', err.message);
@@ -72,4 +72,6 @@ module.exports = {
     addNewTask, 
     closeDB, 
     deleteUser
+    
 };
+
